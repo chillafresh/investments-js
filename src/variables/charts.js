@@ -15,17 +15,173 @@ var delays2 = 80,
 // // // Daily Sales
 // #############################
 
-const dailySalesChart = {
+const dailySalesChartAlphbet = {
   data: {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
-    series: [[12, 17, 7, 17, 23, 18, 38]],
+    labels: [
+      "11/12",
+      "11/13",
+      "11/14",
+      "11/15",
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20",
+    ],
+    series: [
+      [
+        2772.58,
+        2778.72,
+        2780.05,
+        2772.89,
+        2775.34,
+        2776.65,
+        2778.82,
+        2781.19,
+        2787.03,
+      ],
+    ],
   },
   options: {
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 0,
     }),
-    low: 0,
-    high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    low: 2750,
+    high: 2795, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    chartPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+  },
+  // for animation
+  animation: {
+    draw: function (data) {
+      if (data.type === "line" || data.type === "area") {
+        data.element.animate({
+          d: {
+            begin: 600,
+            dur: 700,
+            from: data.path
+              .clone()
+              .scale(1, 0)
+              .translate(0, data.chartRect.height())
+              .stringify(),
+            to: data.path.clone().stringify(),
+            easing: Chartist.Svg.Easing.easeOutQuint,
+          },
+        });
+      } else if (data.type === "point") {
+        data.element.animate({
+          opacity: {
+            begin: (data.index + 1) * delays,
+            dur: durations,
+            from: 0,
+            to: 1,
+            easing: "ease",
+          },
+        });
+      }
+    },
+  },
+};
+
+const dailySalesChartAmazon = {
+  data: {
+    labels: [
+      "11/12",
+      "11/13",
+      "11/14",
+      "11/15",
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20",
+    ],
+    series: [
+      [
+        3750.19,
+        3756.4,
+        3760.82,
+        3764.64,
+        3772.48,
+        3777.72,
+        3781.36,
+        3780.87,
+        3786.84,
+      ],
+    ],
+  },
+  options: {
+    lineSmooth: Chartist.Interpolation.cardinal({
+      tension: 0,
+    }),
+    low: 3740,
+    high: 3795, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    chartPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+  },
+  // for animation
+  animation: {
+    draw: function (data) {
+      if (data.type === "line" || data.type === "area") {
+        data.element.animate({
+          d: {
+            begin: 600,
+            dur: 700,
+            from: data.path
+              .clone()
+              .scale(1, 0)
+              .translate(0, data.chartRect.height())
+              .stringify(),
+            to: data.path.clone().stringify(),
+            easing: Chartist.Svg.Easing.easeOutQuint,
+          },
+        });
+      } else if (data.type === "point") {
+        data.element.animate({
+          opacity: {
+            begin: (data.index + 1) * delays,
+            dur: durations,
+            from: 0,
+            to: 1,
+            easing: "ease",
+          },
+        });
+      }
+    },
+  },
+};
+
+const dailySalesChartApple = {
+  data: {
+    labels: [
+      "11/12",
+      "11/13",
+      "11/14",
+      "11/15",
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20",
+    ],
+    series: [
+      [158.68, 158.3, 158.44, 159.22, 159.41, 159.53, 159.64, 159.64, 159.24],
+    ],
+  },
+  options: {
+    lineSmooth: Chartist.Interpolation.cardinal({
+      tension: 0,
+    }),
+    low: 150,
+    high: 170, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,
@@ -184,7 +340,9 @@ const completedTasksChart = {
 };
 
 module.exports = {
-  dailySalesChart,
+  dailySalesChartAlphbet,
+  dailySalesChartAmazon,
+  dailySalesChartApple,
   emailsSubscriptionChart,
   completedTasksChart,
 };

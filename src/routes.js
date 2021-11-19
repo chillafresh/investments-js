@@ -22,8 +22,10 @@ import Notifications from "@material-ui/icons/Notifications";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
-import TableList from "views/TableList/TableList.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
+
+// /table
+// /notifications
 
 const dashboardRoutes = [
   {
@@ -35,16 +37,8 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/table",
-    name: "Table List",
-    rtlName: "قائمة الجدول",
-    icon: "content_paste",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
     path: "/notifications",
-    name: "Notifications",
+    name: "Let's get started",
     rtlName: "إخطارات",
     icon: Notifications,
     component: NotificationsPage,
